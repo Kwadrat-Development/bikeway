@@ -16,7 +16,6 @@ fun BikewayTheme(content: @Composable () -> Unit) {
     }
 
     MaterialTheme(
-        typography = Typography,
         content = content
     )
 }

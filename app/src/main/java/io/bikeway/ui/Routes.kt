@@ -7,6 +7,7 @@ object Routes {
     val HOME = "/"
     val BOOKMARKS = "/bookmarks"
     val NEW_TRIP = "/new-trip"
+    val PROFILE_PREVIEW = "/profile-preview"
 }
 
 interface NavigatorMixin {

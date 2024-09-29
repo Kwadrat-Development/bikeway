@@ -1,5 +1,6 @@
-package io.bikeway.ui.composables
+package io.bikeway.ui.composable
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -69,13 +70,18 @@ private fun NavBarButton(
     navigateTo: String,
     icon: ImageVector,
 ) {
+    val iconColor = animateColorAsState(
+        targetValue = when (navigateTo == navController.currentDestination?.route) {
+            true -> ColorPalette.primary
+            false -> ColorPalette.secondary },
+        label = "iconColor",
+        )
+
     IconButton(onClick = { navController.navigate(navigateTo) }) {
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = when (navigateTo == navController.currentDestination?.route) {
-                true -> ColorPalette.primary
-                false -> ColorPalette.secondary },
+            tint = iconColor.value,
             modifier = Modifier.size(32.dp),
         )
     }

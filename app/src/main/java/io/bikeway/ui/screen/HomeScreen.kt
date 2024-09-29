@@ -2,6 +2,7 @@ package io.bikeway.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -33,10 +34,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.bikeway.R
+import io.bikeway.ui.Routes
 import io.bikeway.ui.theme.ColorPalette
 import io.bikeway.ui.theme.Roundness
 import io.bikeway.ui.theme.Spacing
-import io.bikeway.ui.viewmodels.HomeViewModel
+import io.bikeway.ui.viewmodel.HomeViewModel
 
 @Composable
 fun HomeScreen(
@@ -49,7 +51,9 @@ fun HomeScreen(
             .background(ColorPalette.background)
             .padding(Spacing.medium),
     ) {
-        TopBar()
+        TopBar(
+            onClickProfilePicture = { viewModel.navigateTo(Routes.PROFILE_PREVIEW) },
+        )
 
         Spacer(Modifier.height(Spacing.medium))
 
@@ -67,15 +71,15 @@ fun HomeScreen(
 
 
 @Composable
-private fun TopBar() {
+private fun TopBar(onClickProfilePicture: () -> Unit) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxWidth(),
     ) {
-        // Profile picture
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
+            // Profile picture
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
@@ -84,7 +88,8 @@ private fun TopBar() {
                         color = ColorPalette.primary,
                         shape = Roundness.circle,
                     )
-                    .clip(Roundness.circle),
+                    .clip(Roundness.circle)
+                    .clickable { onClickProfilePicture() },
             ) {
                 Text(
                     text = "G",
@@ -115,8 +120,8 @@ private fun TopBar() {
                 Icons.Outlined.Notifications,
                 contentDescription = null,
                 tint = ColorPalette.secondary,
-                modifier = Modifier.padding(Spacing.small)
-                )
+                modifier = Modifier.padding(Spacing.small),
+            )
         }
     }
 }
