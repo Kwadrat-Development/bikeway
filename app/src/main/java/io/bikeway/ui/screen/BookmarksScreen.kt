@@ -67,10 +67,18 @@ private fun TopBar() {
 
 @Composable
 private fun BookmarkList() {
-    LazyColumn {
+    LazyColumn{
+        item {
+            Spacer(Modifier.height(Spacing.medium))
+        }
+
         items(20) {
             BookmarkedTrip(it % 3 == 0)
             Spacer(Modifier.height(Spacing.small))
+        }
+
+        item {
+            Spacer(Modifier.height(100.dp))
         }
     }
 }

@@ -15,10 +15,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import io.bikeway.ui.Routes
 import io.bikeway.ui.theme.ColorPalette
 import io.bikeway.ui.theme.Spacing
@@ -70,18 +74,23 @@ private fun NavBarButton(
     navigateTo: String,
     icon: ImageVector,
 ) {
-    val iconColor = animateColorAsState(
-        targetValue = when (navigateTo == navController.currentDestination?.route) {
-            true -> ColorPalette.primary
-            false -> ColorPalette.secondary },
-        label = "iconColor",
-        )
+    // Observe the current destination in the navigation back stack
+    val currentBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = currentBackStackEntry?.destination?.route
 
-    IconButton(onClick = { navController.navigate(navigateTo) }) {
+    IconButton(onClick = {
+        navController.navigate(navigateTo) {
+            launchSingleTop = true
+            restoreState = true
+        }
+    }) {
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = iconColor.value,
+            tint = when (currentRoute == navigateTo) {
+                true -> ColorPalette.primary // Highlight icon if this is the current route
+                false -> ColorPalette.secondary
+            },
             modifier = Modifier.size(32.dp),
         )
     }

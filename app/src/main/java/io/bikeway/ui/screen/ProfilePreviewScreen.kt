@@ -1,6 +1,5 @@
 package io.bikeway.ui.screen
 
-import android.provider.ContactsContract.Profile
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
