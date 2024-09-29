@@ -31,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.bikeway.R
@@ -244,7 +245,10 @@ private fun MapButtons() {
         ) {
             Text(
                 text = "More details",
-                style = TextStyle(color = ColorPalette.primary),
+                style = TextStyle(
+                    color = ColorPalette.primary,
+                    fontWeight = FontWeight.Bold,
+                ),
             )
         }
         

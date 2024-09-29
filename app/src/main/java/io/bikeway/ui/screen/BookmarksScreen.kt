@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import io.bikeway.ui.theme.ColorPalette
 import io.bikeway.ui.theme.Roundness
 import io.bikeway.ui.theme.Spacing
+import io.bikeway.ui.theme.TextType
 
 @Composable
 fun BookmarksScreen(modifier: Modifier = Modifier) {
@@ -55,11 +56,7 @@ private fun TopBar() {
     ) {
         Text(
             text = "Bookmarks",
-            style = TextStyle(
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-            ),
+            style = TextType.headline,
             modifier = Modifier.padding(vertical = Spacing.small)
         )
     }

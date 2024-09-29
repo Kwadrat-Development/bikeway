@@ -1,21 +1,25 @@
 package io.bikeway.ui.screen
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.bikeway.ui.theme.ColorPalette
 import io.bikeway.ui.theme.TextType
-import io.bikeway.ui.viewmodel.ProfilePreviewViewModel
 
 @Composable
 fun ProfilePreviewScreen(
-    viewModel: ProfilePreviewViewModel,
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .background(ColorPalette.background),
     ) {
         TopBar()
     }
@@ -23,9 +27,12 @@ fun ProfilePreviewScreen(
 
 @Composable
 private fun TopBar() {
-    Surface {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
         Text(
-            text = "Profile preview",
+            text = "Profile",
             style = TextType.headline,
         )
     }

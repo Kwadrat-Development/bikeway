@@ -74,7 +74,6 @@ private fun NavBarButton(
     navigateTo: String,
     icon: ImageVector,
 ) {
-    // Observe the current destination in the navigation back stack
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStackEntry?.destination?.route
 
@@ -88,7 +87,7 @@ private fun NavBarButton(
             imageVector = icon,
             contentDescription = null,
             tint = when (currentRoute == navigateTo) {
-                true -> ColorPalette.primary // Highlight icon if this is the current route
+                true -> ColorPalette.primary
                 false -> ColorPalette.secondary
             },
             modifier = Modifier.size(32.dp),

@@ -26,7 +26,6 @@ import io.bikeway.ui.screen.HomeScreen
 import io.bikeway.ui.screen.ProfilePreviewScreen
 import io.bikeway.ui.theme.BikewayTheme
 import io.bikeway.ui.viewmodel.HomeViewModel
-import io.bikeway.ui.viewmodel.ProfilePreviewViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,14 +73,7 @@ private fun App(
         }
 
         composable(Routes.PROFILE_PREVIEW) {
-            val profilePreviewVM = remember {
-                ProfilePreviewViewModel(navController)
-            }
-
-            ProfilePreviewScreen(
-                viewModel = profilePreviewVM,
-                modifier = Modifier.padding(screenPadding),
-            )
+            ProfilePreviewScreen(modifier = Modifier.padding(screenPadding))
         }
     }
 }
